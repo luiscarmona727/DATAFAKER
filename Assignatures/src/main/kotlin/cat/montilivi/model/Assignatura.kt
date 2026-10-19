@@ -19,16 +19,20 @@ data class Assignatura(
     val credits: Double,
     val horesSetmanals: Int,
     val curs: Int,
+    val dificultat: Int, // 0..100
+    val dataInici: String, // AAAA-MM-DD
     val semestre: Semestre,
     val modalitat: Modalitat,
-    val obligatoria: Boolean,
-    val notaMinimaAprovacio: Double,
+    val obligatoria: Boolean = true,
+    val notaMinimaAprovacio: Double = 5.0,
+    val imatge: String,
+    val colorIdentificador: String = "#F57C00",
+    val etiquetes: List<String> = emptyList(),
+    val competencies: List<String> = emptyList(),
+    val observacions: String? = null,
 ) {
-    enum class Semestre {
-        PRIMER, SEGON, ANUAL
-    }
+    val horesTotalsEstimades: Int get() = (credits * 25).toInt()
 
-    enum class Modalitat {
-        PRESENCIAL, SEMIPRESENCIAL, EN_LINIA
-    }
+    enum class Semestre { PRIMER, SEGON, ANUAL, ESTIU }
+    enum class Modalitat { PRESENCIAL, SEMIPRESENCIAL, EN_LINIA, DUAL }
 }

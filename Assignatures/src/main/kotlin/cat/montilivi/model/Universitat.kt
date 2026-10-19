@@ -16,20 +16,22 @@ data class Universitat(
     val ciutat: String,
     val email: String,
     val descripcio: String,
+    val alias: String? = null,
     val anyFundacio: Int,
+    val dataInauguracio: String, // AAAA-MM-DD
     val nombreEstudiants: Int,
     val pressupostAnualMilions: Double,
-    val puntuacio: Double,
+    val puntuacio: Int, // 0..100
     val tipus: Tipus,
     val titularitat: Titularitat,
-    val teCampusInternacional: Boolean,
-    val facultats: List<String>,
+    val teCampusInternacional: Boolean = false,
+    val logo: String,                         // DiceBear
+    val colorCorporatiu: String = "#1976D2",  // #RRGGBB
+    val idiomes: List<String> = emptyList(),  // chips
+    val facultats: List<String> = emptyList(),
 ) {
-    enum class Tipus {
-        GENERALISTA, POLITECNICA, ARTISTICA, A_DISTANCIA
-    }
+    val teAlias: Boolean get() = alias != null   // calculada, no es serialitza
 
-    enum class Titularitat {
-        PUBLICA, PRIVADA, CONCERTADA
-    }
+    enum class Tipus { GENERALISTA, POLITECNICA, ARTISTICA, A_DISTANCIA }
+    enum class Titularitat { PUBLICA, PRIVADA, CONCERTADA, CONSORCIADA }
 }
